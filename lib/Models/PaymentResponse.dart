@@ -1,0 +1,87 @@
+// To parse this JSON data, do
+//
+//     final paymentResponse = paymentResponseFromJson(jsonString);
+
+import 'dart:convert';
+
+class PaymentResponse {
+    PaymentResponse({
+         this.atmId,
+         this.action,
+         this.amount,
+         this.billId,
+         this.date,
+         this.paymethod,
+         this.responseMessage,
+         this.time,
+         this.transactionId,
+         this.type,
+         this.upiApprovalCode,
+         this.upiDate,
+         this.upiMid,
+         this.upiResponseMessage,
+         this.upiTime,
+         this.upiTransactionId,
+    });
+
+    String atmId;
+    String action;
+    String amount;
+    String billId;
+    DateTime date;
+    String paymethod;
+    String responseMessage;
+    DateTime time;
+    String transactionId;
+    String type;
+    String upiApprovalCode;
+    DateTime upiDate;
+    String upiMid;
+    String upiResponseMessage;
+    DateTime upiTime;
+    String upiTransactionId;
+
+    factory PaymentResponse.fromRawJson(String str) => PaymentResponse.fromJson(json.decode(str));
+
+    String toRawJson() => json.encode(toJson());
+
+    factory PaymentResponse.fromJson(Map<String, dynamic> json) => PaymentResponse(
+        atmId: json["atm_id"],
+        action: json["action"],
+        amount: json["amount"],
+        billId: json["bill_id"],
+        date: DateTime.parse(json["date"]),
+        paymethod: json["paymethod"],
+        responseMessage: json["response_message"],
+        time: DateTime.parse(json["time"]),
+        transactionId: json["transaction_id"],
+        type: json["type"],
+        upiApprovalCode: json["upi_approval_code"],
+        upiDate: DateTime.parse(json["upi_date"]),
+        upiMid: json["upi_mid"],
+        upiResponseMessage: json["upi_response_message"],
+        upiTime: DateTime.parse(json["upi_time"]),
+        upiTransactionId: json["upi_transaction_id"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "atm_id": atmId,
+        "action": action,
+        "amount": amount,
+        "bill_id": billId,
+        "date": date.toIso8601String(),
+        "paymethod": paymethod,
+        "response_message": responseMessage,
+        "time": time.toIso8601String(),
+        "transaction_id": transactionId,
+        "type": type,
+        "upi_approval_code": upiApprovalCode,
+        "upi_date": upiDate.toIso8601String(),
+        "upi_mid": upiMid,
+        "upi_response_message": upiResponseMessage,
+        "upi_time": upiTime.toIso8601String(),
+        "upi_transaction_id": upiTransactionId,
+    };
+
+  void add(PaymentResponse data) {}
+}
